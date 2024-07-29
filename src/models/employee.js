@@ -1,8 +1,8 @@
 // functions related to the employee table
 
 const { Model, DataTypes } = require('sequelize');
-
 const sequelize = require('../config/connection.js');
+const Role = require('./role');
 
 class Employee extends Model {}
 
@@ -25,7 +25,7 @@ Employee.init (
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'employee',
+                model: 'role',
                 key: 'id',
             },
         },
@@ -92,7 +92,7 @@ async function updateEmployeeRole(employee_name, new_role) {
     try {
         const employee = await Employee.findOne({
             where: sequelize.where(
-                sequelize.fn('concat', sequelize.col('first_name'), ' ', sequlize.col('last_name')), employee_name
+                sequelize.fn('concat', sequelize.col('first_name'), ' ', sequelize.col('last_name')), employee_name
             ),
         });
         if (!employee) throw new Error(`Employee with name "${employee_name}" not found.`);
@@ -126,6 +126,10 @@ async function getEmployeeNames() {
 }
 
 
-
-
-module.exports = Employee;
+module.exports = {
+    Employee,
+    viewAllEmployees,
+    addEmployee,
+    updateEmployeeRole,
+    getEmployeeNames,
+};
