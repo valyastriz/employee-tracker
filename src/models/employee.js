@@ -46,4 +46,15 @@ Employee.init (
 );
 
 
+// function to view all employees
+async function viewAllEmployees() {
+    try {
+        const employees = await Employee.findAll();
+        console.table(employees.map(emp => emp.get({ plain: true })));
+        return employees;
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+    }
+}
+
 module.exports = Employee;
