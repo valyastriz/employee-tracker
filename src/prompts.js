@@ -1,18 +1,10 @@
 // will handle the inquirer propmts and user input
 
 const inquirer = require('inquirer');
-const { 
-    viewAllDepartments, 
-    viewAllRoles, 
-    viewAllEmployees, 
-    addDepartment, 
-    addEmployee, 
-    updateEmployeeRole, 
-    getEmployeeNames, 
-    getRoleTitles, 
-    getDepartmentNames, 
-    addRole 
-} = require('./utils/queries');
+const { viewAllDepartments, addDepartment, getDepartmentNames } = require('./models/department');
+const { viewAllEmployees, addEmployee, updateEmployeeRole, getEmployeeNames } = require('./models/employee');
+const { viewAllRoles, addRole, getRoleTitles } = require('./models/role');
+
 
 async function startApp() {
     const { selectedOption } = await inquirer.prompt([
@@ -78,6 +70,8 @@ async function promptAddDepartment() {
 }
 
 async function promptAddEmployee() {
+    const roles = await getRoleTitles();
+    const employees = await getEmployeeNames();
     const answers = await inquirer.prompt([
         {
             type: 'input',
@@ -90,17 +84,19 @@ async function promptAddEmployee() {
             message: 'Enter the last name of the employee: ',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'role_name',
-            message: 'Enter the role the employee: ',
+            message: 'Select the role for the employee ',
+            choices: roles,
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'manager_name',
-            message: 'Enter the manager name of the employee (or leave blank if none): '
+            message: 'Select the manager for the employee: ',
+            choices: ['None', ...employees],
         },
     ]);
-    await addEmployee(answers.first_name, answers.last_name, answers.role_name, answers.manager_name || null);
+    await addEmployee(answers.first_name, answers.last_name, answers.role_name, answers.manager_name === 'None' ? null : answers.manager_name);
 }
 
 async function promptAddRole() {
