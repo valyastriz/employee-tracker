@@ -110,6 +110,21 @@ async function updateEmployeeRole(employee_name, new_role) {
     }
 }
 
+// function to get employee names
+async function getEmployeeNames() {
+    try {
+        const employees = await Employee.findAll({
+            attributes: [
+                [sequelize.fn('concat', sequelize.col('first_name'), ' ', sequelize.col('last_name')), 'name'],
+            ],
+        });
+        return employees.map(emp => emp.get({ plain: true }).name);
+    } catch (err) {
+        console.error('Error execuyting query', err.stack);
+        return [];
+    }
+}
+
 
 
 
