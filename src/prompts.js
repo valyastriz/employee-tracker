@@ -23,29 +23,29 @@ async function startApp() {
     ]);
 
     await SelectedCase(selectedOption);
-    startApp();
+    startApp(); // restarts the prompt loop
 }
 
 
-function SelectedCase(selectedOption) {
+async function SelectedCase(selectedOption) {
     switch (selectedOption) {
         case 'ViewAllDepts':
-            viewAllDepartments();
+            await viewAllDepartments();
             break;
         case 'ViewAllRoles': 
-            viewAllRoles();
+            await viewAllRoles();
             break;
         case 'ViewAllEmployees':
-            viewAllEmployees();
+            await viewAllEmployees();
             break;
         case 'AddDept': 
-            addDepartment();
+            await addDepartment();
             break;
         case 'AddEmployee':
-            addEmployee();
+            await addEmployee();
             break;
         case 'UpdateEmpRole': 
-            updateEmployeeRole();
+            await updateEmployeeRole();
             break;
         default:
             console.log('Invalid option selected');
