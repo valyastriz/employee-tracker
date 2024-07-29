@@ -2,7 +2,7 @@
 
 const { Model, DataTypes } = require('sequelize');
 
-const sequelize = require('./config/connection.js');
+const sequelize = require('../config/connection.js');
 
 class Department extends Model {}
 
@@ -26,4 +26,18 @@ Department.init(
     }
 );
 
-module.exports = Department;
+// function to view all departments
+async function viewAllDepartments() {
+    try {
+        const departments = await Department.findAll();
+        console.table(departments.map(dept => dept.get({ plain: true })));
+        return departments;
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+    }
+}
+
+module.exports = {
+    Department,
+    viewAllDepartments,
+};
