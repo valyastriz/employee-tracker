@@ -48,8 +48,19 @@ async function addDepartment(name) {
     }
 }
 
-
+// function to get department names
+async function getDepartmentNames() {
+    try {
+        const departments = await Department.findAll({ attributes: ['name ']});
+        return departments.map(dept => dept.name);
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+        return [];
+    }
+}
 module.exports = {
     Department,
     viewAllDepartments,
+    addDepartment,
+    getDepartmentNames,
 };
