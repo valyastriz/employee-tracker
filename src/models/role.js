@@ -37,3 +37,13 @@ Role.init(
     }
 );
 
+// function to view all roles
+async function viewAllRoles() {
+    try {
+        const roles = await Role.findAll();
+        console.table(roles.map(role => role.get({ plain: true })));
+        return roles;
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+    }
+}
