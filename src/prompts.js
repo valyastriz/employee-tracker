@@ -3,8 +3,8 @@
 const inquirer = require('inquirer');
 const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addEmployee, updateEmployeeRole, getEmployeeNames, getRoleTitles, getDepartmentNames, addRole } = require('./utils/queries');
 
-function startApp() {
-    inquirer
+async function startApp() {
+    const { selectedOption } = await inquirer
     .prompt([
         {
             type: 'list',
@@ -18,13 +18,12 @@ function startApp() {
                 { name: 'Add a department', value: 'AddDept' },
                 { name: 'Add an employee', value: 'AddEmployee' },
                 { name: 'Update an employee role', value: 'UpdateEmpRole' },
-            ]
+            ],
         },
-    ]).then(answers => {
-        SelectedCase(answers.selectedOption);
-    }).catch(error => {
-        console.error('Error: ', error);
-    });
+    ]);
+
+    await SelectedCase(selectedOption);
+    startApp();
 }
 
 
