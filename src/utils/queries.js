@@ -2,5 +2,7 @@
 
 
 /*future queries 
-const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addEmployee, updateEmployeeRole } = require('./utils/queries');
+const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addEmployee, updateEmployeeRole, getEmployeeNames, getRoleTitles, getDepartmentNames, addRole } = require('./utils/queries');
 */
+
+
