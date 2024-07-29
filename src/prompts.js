@@ -1,11 +1,21 @@
 // will handle the inquirer propmts and user input
 
 const inquirer = require('inquirer');
-const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addEmployee, updateEmployeeRole, getEmployeeNames, getRoleTitles, getDepartmentNames, addRole } = require('./utils/queries');
+const { 
+    viewAllDepartments, 
+    viewAllRoles, 
+    viewAllEmployees, 
+    addDepartment, 
+    addEmployee, 
+    updateEmployeeRole, 
+    getEmployeeNames, 
+    getRoleTitles, 
+    getDepartmentNames, 
+    addRole 
+} = require('./utils/queries');
 
 async function startApp() {
-    const { selectedOption } = await inquirer
-    .prompt([
+    const { selectedOption } = await inquirer.prompt([
         {
             type: 'list',
             name: 'selectedOption',
@@ -39,13 +49,16 @@ async function SelectedCase(selectedOption) {
             await viewAllEmployees();
             break;
         case 'AddDept': 
-            await addDepartment();
+            await promptAddDepartment();
+            break;
+        case 'AddRole':
+            await promptAddRole();
             break;
         case 'AddEmployee':
-            await addEmployee();
+            await promptAddEmployee();
             break;
         case 'UpdateEmpRole': 
-            await updateEmployeeRole();
+            await promptUpdateEmployeeRole();
             break;
         default:
             console.log('Invalid option selected');
@@ -91,6 +104,7 @@ async function promptAddEmployee() {
 }
 
 async function promptAddRole() {
+    const departments = await getDepartmentNames();
     const answers = await inquirer.prompt([
         {
             type: 'input',
@@ -103,37 +117,33 @@ async function promptAddRole() {
             message: 'Enter the salary of the role',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'department_name',
-            message: 'Enter the name of the department for the role: ',
+            message: 'Select the department for the role: ',
+            choices: departments,
         },
     ]);
     await addRole(answers.title, answers.salary, answers.department_name);
 }
 
 async function promptUpdateEmployeeRole() {
+    const employeeRoles = await getRoleTitles();
+    const employeeNames = await getEmployeeNames();
     const answers = await inquirer.prompt([
         {
             type: 'list',
             name: 'employee_name',
             message: 'Select which employee you would like to update: ',
-            choices: 
-                [
-                    //list of employees currently in the database
-                ]
+            choices: employeeNames,
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'new_role',
             message: 'Select new role for the employee: ',
-            choices: 
-                [
-                    //list of current roles in the database
-                ]
+            choices: employeeRoles,
         },
     ]);
     await updateEmployeeRole(answers.employee_name, answers.new_role);
 }
-
 
 module.exports = { startApp };
