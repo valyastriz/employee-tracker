@@ -1,6 +1,7 @@
 // will handle the inquirer propmts and user input
 
 const inquirer = require('inquirer');
+const { viewAllDepartments, viewAllRoles, viewAllEmployees, addDepartment, addEmployee, updateEmployeeRole } = require('./utils/queries');
 
 function startApp() {
     inquirer
@@ -12,39 +13,45 @@ function startApp() {
             choices: 
             [
                 { name: 'View all departments', value: 'ViewAllDepts' },
-                { name: 'View all rols', value: 'ViewAllRoles' },
+                { name: 'View all roles', value: 'ViewAllRoles' },
                 { name: 'View all employees', value: 'ViewAllEmployees' },
                 { name: 'Add a department', value: 'AddDept' },
                 { name: 'Add an employee', value: 'AddEmployee' },
                 { name: 'Update an employee role', value: 'UpdateEmpRole' },
             ]
         },
-    ])
+    ]).then(answers => {
+        SelectedCase(answers.selectedOption);
+    }).catch(error => {
+        console.error('Error: ', error);
+    });
 }
-
-
-
 
 
 function SelectedCase(selectedOption) {
-    switch (license) {
+    switch (selectedOption) {
         case 'ViewAllDepts':
-            console.log('ViewAllDepts selected');
+            viewAllDepartments();
             break;
         case 'ViewAllRoles': 
-            console.log('ViewAllRoles selected');
+            viewAllRoles();
             break;
         case 'ViewAllEmployees':
-            console.log('ViewAllEmployees selected');
+            viewAllEmployees();
             break;
         case 'AddDept': 
-            console.log('AddDept selected');
+            addDepartment();
             break;
         case 'AddEmployee':
-            console.log('AddEmployee selected');
+            addEmployee();
             break;
         case 'UpdateEmpRole': 
-            console.log('UpdateEmployee selected');
+            updateEmployeeRole();
+            break;
+        default:
+            console.log('Invalid option selected');
             break;
     }
 }
+
+module.exports = { startApp };
