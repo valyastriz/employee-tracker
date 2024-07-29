@@ -67,3 +67,20 @@ async function addRole(title, salary, department_name) {
     }
 }
 
+// function to get role titles
+async function getRoleTitles() {
+    try {
+        const roles = await Role.findAll({ attributes: ['title'] });
+        return roles.map(role => role.title);
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+        return [];
+    }
+}
+
+module.exports = {
+    Role,
+    viewAllRoles,
+    addRole,
+    getRoleTitles,
+};
