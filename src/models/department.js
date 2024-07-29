@@ -37,6 +37,18 @@ async function viewAllDepartments() {
     }
 }
 
+// function to add a new department
+async function addDepartment(name) {
+    try {
+        const department = await Department.create({ name });
+        console.log('Department added: ', department.get({ plain: true }));
+        return department;
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+    }
+}
+
+
 module.exports = {
     Department,
     viewAllDepartments,
