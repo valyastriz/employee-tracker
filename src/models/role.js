@@ -47,3 +47,23 @@ async function viewAllRoles() {
         console.error('Error executing query', err.stack);
     }
 }
+
+// function to add a new role
+async function addRole(title, salary, department_name) {
+    try {
+        const department = await Department.findOne({ where: { name: department_name } });
+        if (!department) throw new Error(`Department with name "${department_name}" not found.`);
+
+        const role = await Role.create({
+            title,
+            salary,
+            department_id: department.id,
+        });
+
+        console.log('Role added: ', role.get({ plain: true }));
+        return role;
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+    }
+}
+
