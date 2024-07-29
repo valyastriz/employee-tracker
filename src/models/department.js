@@ -1,0 +1,1 @@
+// will hold all the function related to the 'department' table
