@@ -87,5 +87,30 @@ async function addEmployee(first_name, last_name, role_name, manager_name) {
     }
 }
 
+// function to update an employee's role
+async function updateEmployeeRole(employee_name, new_role) {
+    try {
+        const employee = await Employee.findOne({
+            where: sequelize.where(
+                sequelize.fn('concat', sequelize.col('first_name'), ' ', sequlize.col('last_name')), employee_name
+            ),
+        });
+        if (!employee) throw new Error(`Employee with name "${employee_name}" not found.`);
+
+        const role = await Role.findOne({ where: { title: new_role } });
+        if (!role) throw new Error(`Role with title "${new_role}" not found.`);
+
+        employee.role_id = role.id;
+        await employee.save();
+
+        console.log('Employee role updated: ', employee.get({ plain: true }));
+        return employee;
+    }catch (err) {
+        console.error('Error executing query', err.stack);
+    }
+}
+
+
+
 
 module.exports = Employee;
