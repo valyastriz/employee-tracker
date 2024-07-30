@@ -1,7 +1,14 @@
-// will handle the connection to the porstresql database
-
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
+
+// Print environment variables to verify
+console.log({
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+});
 
 const sequelize = new Sequelize(
     process.env.DB_NAME,
@@ -17,5 +24,16 @@ const sequelize = new Sequelize(
     }
 );
 
+// Test the connection
+async function testConnection() {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+}
+
+testConnection();
 
 module.exports = sequelize;
