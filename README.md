@@ -65,3 +65,10 @@ Follow the prompts to view and manage departments, roles, and employees.
 - Update an employee's role.
 - Manage the employee database through a simple command-line interface.
 
+## Screenshots
+
+![Screenshot](./assets/screenshot.png)
+
+## Repository
+
+For more details, visit the [GitHub repository](https://github.com/valyastriz/employee-tracker.git).
