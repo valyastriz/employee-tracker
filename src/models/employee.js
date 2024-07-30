@@ -2,7 +2,7 @@
 
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Role = require('./Role');
+const Role = require('./Role').Role;
 
 class Employee extends Model {}
 

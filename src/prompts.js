@@ -19,6 +19,7 @@ async function startApp() {
                 { name: 'View all roles', value: 'ViewAllRoles' },
                 { name: 'View all employees', value: 'ViewAllEmployees' },
                 { name: 'Add a department', value: 'AddDept' },
+                { name: 'Add a role', value: 'AddRole' },
                 { name: 'Add an employee', value: 'AddEmployee' },
                 { name: 'Update an employee role', value: 'UpdateEmpRole' },
             ],

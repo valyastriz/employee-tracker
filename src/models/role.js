@@ -2,7 +2,7 @@
 
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-const Department = require('./Department');
+const { Department } = require('./Department');
 
 class Role extends Model {}
 
@@ -24,7 +24,7 @@ Role.init(
         department_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: 'department',
+                model: Department,
                 key: 'id',
             },
         },
