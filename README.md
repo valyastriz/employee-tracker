@@ -69,6 +69,8 @@ Follow the prompts to view and manage departments, roles, and employees.
 
 ![Screenshot](./assets/screenshot.png)
 
+[Video Walkthrough](https://www.loom.com/share/1454c6f3f1ee48f9bae9eb47ef09758a?sid=b838a5b9-7509-4f4b-ba55-0e63d52021ad)
+
 ## Repository
 
 For more details, visit the [GitHub repository](https://github.com/valyastriz/employee-tracker.git).
