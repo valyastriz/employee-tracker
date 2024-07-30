@@ -10,11 +10,11 @@ const roleSeed = require('./roleSeed.json');
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
 
-    const departments = await Department.bulkCreate(departmentSeed);
+    await Department.bulkCreate(departmentSeed);
 
-    const roles = await Role.bulkCreate(roleSeed);
+    await Role.bulkCreate(roleSeed);
 
-    const employees = await Employee.bulkCreate(employeeSeed);
+    await Employee.bulkCreate(employeeSeed);
 
     console.log('Database seeded successfully.');
     process.exit(0);

@@ -1,7 +1,7 @@
 // will hold all the functions related to the 'department' table
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection.js');
+const sequelize = require('../config/connection');
 
 class Department extends Model {}
 

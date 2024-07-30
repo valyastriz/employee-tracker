@@ -1,11 +1,5 @@
 [
-    { 
-        "name": "HR" 
-    },
-    { 
-        "name": "Engineering"
-    },
-    { 
-        "name": "Finance"
-    }
+    { "name": "Human Resources" },
+    { "name": "Engineering" },
+    { "name": "Finance" }
 ]

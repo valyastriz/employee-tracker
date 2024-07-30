@@ -1,7 +1,7 @@
 // functions related to the employee table
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection.js');
+const sequelize = require('../config/connection');
 const Role = require('./Role');
 
 class Employee extends Model {}

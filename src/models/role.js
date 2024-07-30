@@ -1,8 +1,8 @@
 // functions related to the role table
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection.js');
-const Department = require('./Department.js');
+const sequelize = require('../config/connection');
+const Department = require('./Department');
 
 class Role extends Model {}
 
