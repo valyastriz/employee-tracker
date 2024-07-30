@@ -1,9 +1,10 @@
 // will handle the inquirer propmts and user input
 
 const inquirer = require('inquirer');
-const { viewAllDepartments, addDepartment, getDepartmentNames } = require('./models/department');
-const { viewAllEmployees, addEmployee, updateEmployeeRole, getEmployeeNames } = require('./models/employee');
-const { viewAllRoles, addRole, getRoleTitles } = require('./models/role');
+const { viewAllDepartments, addDepartment, getDepartmentNames } = require('./models/Department');
+const { viewAllEmployees, addEmployee, updateEmployeeRole, getEmployeeNames } = require('./models/Employee');
+const { viewAllRoles, addRole, getRoleTitles } = require('./models/Role');
+
 
 
 async function startApp() {

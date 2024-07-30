@@ -2,7 +2,7 @@
 
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection.js');
-const Department = require('./department');
+const Department = require('./Department.js');
 
 class Role extends Model {}
 

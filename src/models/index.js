@@ -1,6 +1,6 @@
-const Department = require('./department');
-const Employee = require('./employee');
-const Role = require('./role');
+const Department = require('./Department');
+const Employee = require('./Employee');
+const Role = require('./Role');
 
 module.exports = {
     Department,
