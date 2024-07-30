@@ -44,8 +44,8 @@ The Employee Tracker is a command-line application that allows you to manage a c
 6. Create a `.env` file in the root directory and add your database credentials:
     ```env
     DB_NAME=employee_tracker_db
-    DB_USER=postgres
-    DB_PASSWORD=your_password
+    DB_USER='your_user'
+    DB_PASSWORD='your_password'
     DB_HOST=localhost
     DB_PORT=5432
     ```
