@@ -1,7 +1,5 @@
 const sequelize = require('../src/config/connection');
-const Department = require('../src/models/department');
-const Employee = require('../src/models/employee');
-const Role = require('../src/models/role');
+const { Department, Employee, Role } = require('../src/models');
 
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
